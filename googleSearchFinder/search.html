@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <title>Login scan search</title>
+  </head>
+  <body>
+    <div id="result"></div>
+	<script src="testList.js"></script>
+    <script>
+	
+	var testFileArrayIndex = 0
+	var testList = testList[testFileArrayIndex];
+	var counter = 0
+	
+	var apikey1 = "AIzaSyCmTXDrtF0i2fUlLF1XXwSKdR2IciK5Slw"
+	var apikey2 = "AIzaSyCjOUm8rIGZhZQj0fTzIBerbyB7E2qNY64"
+	var apikey3 = "AIzaSyAE1xs-O7zkE6QCczZ6Ljtd-bORlNVwcb8"
+	var cx = "003583132726741690341:ulfrcpplqu4"
+	var currentWebsite = ""
+	var keyword = " login"
+	var q = currentWebsite + keyword
+	
+	var finalResults = ""
+		
+	function httpGetAsync(theUrl){
+		var xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = function() { 
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				processResults(xmlHttp.responseText)
+			}
+		}
+		xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+		xmlHttp.send(null);
+		
+	}
+	
+	function processResults(results) {
+		console.log(counter)
+		document.getElementById("result").innerHTML += "[\'" + JSON.parse(results).queries.request[0].searchTerms.split(" ")[0] + "\'" + "," + "\'" +JSON.parse(results).items[0].link+"\'"+","+"\'"+JSON.parse(results).items[1].link+"\'],"
+		counter++
+	}
+	
+	for (var i = 2000; i < 3000; i++ ) {
+		currentWebsite = testList[i]
+		console.log(i + ": " + currentWebsite)
+		q = currentWebsite + keyword
+		httpGetAsync("https://www.googleapis.com/customsearch/v1?key="+ apikey3 +"&cx="+ cx +"&q=" + q + "&prettyPrint=true"+"&fields=queries/request/searchTerms,items(title,link)")
+
+
+	}
+	
+    </script>
+  </body>
+</html>  
+

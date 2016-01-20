@@ -1,0 +1,19 @@
+35 https://register.go.com/go/login - doesn't work?
+36 http://www.nytimes.com/ - found button didn't fill in
+45 http://www.nydailynews.com/ - doesn't find?
+54 https://chaseonline.chase.com/ - didn't find submit
+55 http://www.examiner.com/user/login - fills in pw not email
+58 http://www.tmz.com/signin/ - same
+60 photobucket
+71 http://www.people.com/people/
+72 http://www.hulu.com/welcome
+
+
+msnbc - lol popup killed the actual page
+
+add if doesn't do anything after 5 seconds after autofilling
+add in submit click and detection of traffic
+try other URLs
+final fail condition
+
+python monitoring script
